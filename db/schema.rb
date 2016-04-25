@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425032805) do
+ActiveRecord::Schema.define(version: 20160425044452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "conditions", force: :cascade do |t|
-    t.string  "sailing_time"
-    t.integer "cars_percentage"
-    t.integer "trucks_percentage"
-    t.integer "total_percentage"
-    t.string  "route_origin"
+    t.string   "sailing_time"
+    t.integer  "cars_percentage"
+    t.integer  "trucks_percentage"
+    t.integer  "total_percentage"
+    t.string   "route_origin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
