@@ -32,3 +32,12 @@ default: &default
 development:
   <<: *default
   database: stats
+
+production:
+  host: ec2-54-197-254-213.compute-1.amazonaws.com
+  database: d60itcj70t46l9
+  user: iludstzfpqfpre
+  port: 5432
+  password: 57LPkVcWBNgzpv8VM6O5lr0ee2
+  psql: heroku pg:psql --app bcferriesscraper DATABASE
+  url: postgres://iludstzfpqfpre:57LPkVcWBNgzpv8VM6O5lr0ee2@ec2-54-197-254-213.compute-1.amazonaws.com:5432/d60itcj70t46l9
