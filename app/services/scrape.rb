@@ -21,7 +21,7 @@ class Scrape
       tail = option.attribute('value').value
       prefix = route_url.split('sailingDetail').first
       new_url = prefix + tail
-      get_data(new_url, route_origin)
+      break unless get_data(new_url, route_origin)
     end
   end
 
@@ -36,13 +36,18 @@ class Scrape
     trucks = details.css('table tr td table tr td table').last['width'].to_i
     # ferry is 77% cars, 23% trucks
     total = (cars * 0.77 + trucks * 0.23).to_i
-    Condition.create(
-      sailing_time: sailing_time,
-      cars_percentage: cars,
-      trucks_percentage: trucks,
-      total_percentage: total,
-      route_origin: route_origin
-    )
+    if total > 0
+      c = Condition.new(
+        sailing_time: sailing_time,
+        cars_percentage: cars,
+        trucks_percentage: trucks,
+        total_percentage: total,
+        route_origin: route_origin
+      )
+      return true if c.save
+    else
+      return false
+    end
   end
 
 
