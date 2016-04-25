@@ -44,7 +44,11 @@ class Scrape
         total_percentage: total,
         route_origin: route_origin
       )
-      return true if c.save
+      if c.save && total > 7 # stop if total is 7% or less (next sailing will have so little)
+        return true
+      else
+        return false
+      end
     else
       return false
     end
