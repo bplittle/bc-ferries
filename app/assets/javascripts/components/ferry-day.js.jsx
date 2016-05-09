@@ -23,7 +23,9 @@ var FerriesDay = React.createClass({
             <tr className="bold">
               <td>Condition Time</td>
               <td>Sailing Time</td>
-              <td>Percentage Full</td>
+              <td>Total %</td>
+              <td>Car %</td>
+              <td>Truck %</td>
             </tr>
             {rows}
           </tbody>
@@ -72,6 +74,8 @@ var ConditionRow = React.createClass({
         <td>{hours}:{minutes}</td>
         <td>{c.sailing_time}</td>
         <td>{c.total_percentage}</td>
+        <td>{c.cars_percentage}</td>
+        <td>{c.trucks_percentage}</td>
       </tr>
     )
   }
