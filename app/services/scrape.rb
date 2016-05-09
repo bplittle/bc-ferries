@@ -5,9 +5,11 @@ class Scrape
   def self.call
     @horseshoe_to_langdale = 'http://orca.bcferries.com:8080/cc/marqui/sailingDetail.asp?route=03&dept=HSB'
     @langdale_to_horseshoe = 'http://orca.bcferries.com:8080/cc/marqui/sailingDetail.asp?route=03&dept=LNG'
-
-    scrape(@horseshoe_to_langdale)
-    scrape(@langdale_to_horseshoe)
+    d = Date.today
+    if d.friday? || d.saturday? || d.sunday?
+      scrape(@horseshoe_to_langdale)
+      scrape(@langdale_to_horseshoe)
+    end
   end
 
   private
