@@ -34,10 +34,10 @@ class Scrape
       hours = sailing_time_ampm.split(':').first.to_i
       hours += 12
       sailing_time = hours.to_s + ':' + sailing_time_ampm.split(':').last[0, 2]
-      sailing_time +=  + " " + sailing_time_ampm[/\(.*\)/] if sailing_time_ampm[/\(.*\)/]
+      sailing_time +=  " " + sailing_time_ampm[/\(.*\)/] if sailing_time_ampm[/\(.*\)/]
     else
       sailing_time = sailing_time_ampm[0, 5]
-      sailing_time +=  + " " + sailing_time_ampm[/\(.*\)/] if sailing_time_ampm[/\(.*\)/]
+      sailing_time +=  " " + sailing_time_ampm[/\(.*\)/] if sailing_time_ampm[/\(.*\)/]
     end
 
     detail_url_tail = doc.css('script')[2].children.first.inspect.match(/DeckSpace_pop.*tm=..../).to_s
