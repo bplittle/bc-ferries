@@ -27,7 +27,15 @@ class Scrape
 
   def self.get_data(url, route_origin)
     doc = Nokogiri::HTML(open(url))
-    sailing_time = doc.css('span.white-header-bold-lg').first.text.split('Details: ').last
+    sailing_time_ampm = doc.css('span.white-header-bold-lg').first.text.split('Details: ').last
+    if sailing_time_ampm.include? 'PM'
+      hours = sailing_time_ampm.split(':').first.to_i
+      hours += 12
+      sailing_time = hours.to_s + ':' + sailing_time_ampm.split(':').last[0, 2]
+    else
+      sailing_time = sailing_time_ampm[0, 5]
+    end
+
     detail_url_tail = doc.css('script')[2].children.first.inspect.match(/DeckSpace_pop.*tm=..../).to_s
     detail_url_prefix = url.split('sailingDet').first
     detail_url = detail_url_prefix + detail_url_tail
